@@ -1,0 +1,34 @@
+[project]
+name = "mandata"
+version = "0.1.0"
+description = "Check that what your coding-agent instruction files say is still true: commands, file paths, imports and versions."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Patricia Kusch" }]
+keywords = ["ai-agents", "claude-code", "agents-md", "claude-md", "documentation", "linter", "cli"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/patkusch/mandata"
+Repository = "https://github.com/patkusch/mandata"
+Issues = "https://github.com/patkusch/mandata/issues"
+Changelog = "https://github.com/patkusch/mandata/blob/main/CHANGELOG.md"
+
+[project.scripts]
+mandata = "mandata.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["mandata"]

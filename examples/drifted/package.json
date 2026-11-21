@@ -1,0 +1,1 @@
+{ "name": "healthy", "scripts": { "build": "tsc", "test": "node --test", "lint": "eslint ." }, "engines": { "node": ">=22" } }
