@@ -27,7 +27,7 @@ Changelog = "https://github.com/patkusch/mandata/blob/main/CHANGELOG.md"
 mandata = "mandata.cli:main"
 
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools>=84.2.1"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
