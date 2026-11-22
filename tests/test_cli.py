@@ -98,3 +98,23 @@ class Cli(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Exclude(unittest.TestCase):
+    def test_exclude_leaves_out_everything_under_a_folder_and_nothing_else(self):
+        p = Project({"package.json": {"scripts": {}}, "CLAUDE.md": "Nothing.\n",
+                     "examples/bad/CLAUDE.md": "`npm run nope`\n", "examples/bad/package.json": {"scripts": {}},
+                     "examples-extra/CLAUDE.md": "Nothing.\n"})
+        self.addCleanup(p.cleanup)
+        self.assertEqual(call([str(p.root)])[0], 1)
+        code, out, _ = call([str(p.root), "--exclude", "examples"])
+        self.assertEqual(code, 0)
+        self.assertIn("checked 2 instruction files", out, "examples-extra is a different folder and is still checked")
+
+    def test_exclude_can_be_given_more_than_once_and_with_slashes(self):
+        p = Project({"a/CLAUDE.md": "`npm run x`\n", "a/package.json": {"scripts": {}},
+                     "b/CLAUDE.md": "`npm run y`\n", "b/package.json": {"scripts": {}}})
+        self.addCleanup(p.cleanup)
+        code, out, _ = call([str(p.root), "--exclude", "a/", "--exclude", "b"])
+        self.assertEqual(code, 0)
+        self.assertIn("No agent instruction files found", out)

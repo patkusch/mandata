@@ -61,6 +61,7 @@ pip install git+https://github.com/patkusch/mandata
 mandata                # check the project in this folder
 mandata path/to/repo   # or another one
 mandata --json         # the same result as data
+mandata --exclude examples   # leave out sample projects kept under a folder
 ```
 
 It exits with 0 when nothing is wrong, 1 when a claim is wrong now, and 2 when it could not run. `--fail-on warn` also fails on the "probably stale" items, and `--fail-on never` never fails.
@@ -80,7 +81,7 @@ A false alarm is treated as a bug. If it tells you something is wrong when it is
 
 ## Tests
 
-75 tests, no network, no files outside a throw-away folder. `python -m unittest discover -s tests`. The two projects in `examples/` (one healthy, one with drifted instructions) are checked in CI.
+77 tests, no network, no files outside a throw-away folder. `python -m unittest discover -s tests`. The two projects in `examples/` (one healthy, one with drifted instructions) are checked in CI.
 
 ## Licence
 

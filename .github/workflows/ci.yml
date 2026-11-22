@@ -24,3 +24,5 @@ jobs:
         run: |
           python -m mandata examples/healthy
           ! python -m mandata examples/drifted
+      - name: mandata checks its own instruction file
+        run: python -m mandata . --exclude examples

@@ -16,11 +16,13 @@ def main(argv=None) -> int:
     p.add_argument("--json", action="store_true", help="print the result as JSON")
     p.add_argument("--fail-on", choices=["error", "warn", "never"], default="error",
                    help="when to exit with 1: on a wrong claim (default), on any finding, or never")
+    p.add_argument("--exclude", action="append", default=[], metavar="FOLDER",
+                   help="leave out the instruction files under this folder, for example sample projects used in tests (repeatable)")
     args = p.parse_args(argv)
     if not os.path.isdir(args.path):
         print(f"mandata: {args.path} is not a folder", file=sys.stderr)
         return 2
-    result = check_project(args.path)
+    result = check_project(args.path, args.exclude)
     print(report.as_json(result) if args.json else report.text(result))
     errors, warnings = result.counts()
     if args.fail_on == "error":

@@ -152,9 +152,10 @@ def check_file(rel, text, facts, result, seen):
     return used_managers, tests
 
 
-def check_project(root) -> Result:
+def check_project(root, exclude=()) -> Result:
     facts = load_facts(root)
-    files = instruction_files(facts)
+    skip = [e.strip("/").replace("\\", "/") for e in exclude if e.strip("/")]
+    files = [f for f in instruction_files(facts) if not any(f == e or f.startswith(e + "/") for e in skip)]
     result = Result(root=str(facts.root), files=files)
     seen = set()
     by_file = {}
