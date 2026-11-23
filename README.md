@@ -79,6 +79,10 @@ I ran it on a real project with 17 instruction files in sub-folders (a monorepo)
 
 A false alarm is treated as a bug. If it tells you something is wrong when it is not, please open an issue with the line.
 
+## Used together
+
+[agentcheck](https://github.com/patkusch/agentcheck) runs mandata with [leash](https://github.com/patkusch/leash) (agent permissions) and [skillgate](https://github.com/patkusch/skillgate) (agent skills) on one repo and prints a single page: what to fix first, what to check, and what the page cannot tell you.
+
 ## Tests
 
 77 tests, no network, no files outside a throw-away folder. `python -m unittest discover -s tests`. The two projects in `examples/` (one healthy, one with drifted instructions) are checked in CI.
